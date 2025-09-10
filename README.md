@@ -64,9 +64,11 @@ class User(Serializable):
 
 user = User(1, "Alice")
 print(user.to_dict())  # {'id': 1, 'name': 'Alice', 'email': None}
+alice = User.from_dict({"id": 1, "name": "Alice", "email": None})
 
 # JSON with wrapper
 print(user.to_json(wrapper="user"))  # {"user": {"id":1,"name":"Alice","email":null}}
+alice = User.from_json('{"user": {"id":1,"name":"Alice","email":null}', wrapper="user")
 
 # Custom class-level JSON wrapper
 @dataclass
