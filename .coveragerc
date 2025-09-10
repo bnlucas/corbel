@@ -1,0 +1,8 @@
+[run]
+omit =
+    */__init__.py
+    corbel/types.py
+    corbel/protocols/*
+    corbel/mixins/_comparable.py
+    corbel/mixins/_hashable.py
+    tests/*
