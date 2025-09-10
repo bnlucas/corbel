@@ -222,14 +222,12 @@ def positive(x: int) -> bool:
 class Example(Corbel):
     _value: int = field()
 
-    @corbel_property
+    @corbel_property(validator=lambda v: positive(v))
     def value(self) -> int:
         return self._value
 
     @value.setter
     def value(self, val: int) -> None:
-        if not positive(val):
-            raise ValueError("Must be positive")
         self._value = val
 
 ex = Example(5)
@@ -295,7 +293,7 @@ class Product(Serializable, Updatable, Validated, Hashable, Comparable):
     name: str = field()
     price: float = field()
 
-    @corbel_property
+    @corbel_property()
     def discounted_price(self) -> float:
         return self.price * 0.9
 
