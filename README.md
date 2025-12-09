@@ -30,7 +30,7 @@ The base mixin that provides:
 - Hook methods for updates and validation
 
 ```python
-from dataclasses import dataclass
+from corbel import dataclass
 from corbel import Corbel, field
 
 @dataclass
