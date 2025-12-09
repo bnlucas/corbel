@@ -1,12 +1,9 @@
 from __future__ import annotations
 
 from types import UnionType
-from typing import Any, get_args, get_origin, Union, TYPE_CHECKING
+from typing import Any, get_args, get_origin, Union
 
 from ._deserialize_obj import deserialize_obj
-
-if TYPE_CHECKING:
-    from typing import Any
 
 
 def deserialize_value(

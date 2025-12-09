@@ -14,11 +14,15 @@ def dataclass(
     cls: None,
     /,
 ) -> Callable[[type[_T]], type[_T]]: ...
+
+
 @overload
 def dataclass(
     cls: type[_T],
     /,
 ) -> type[_T]: ...
+
+
 @overload
 def dataclass(
     *,
