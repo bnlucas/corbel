@@ -53,7 +53,7 @@ Provides `to_dict`, `from_dict`, `to_json`, `from_json` for dataclasses.
 - Configurable inclusion rules (`__inclusion__`)
 
 ```python
-from dataclasses import dataclass
+from corbel import dataclass
 from corbel import Serializable, field, Include
 
 @dataclass
@@ -103,7 +103,7 @@ Provides immutable-style updates:
 - `batch_update()`: context manager to temporarily disable validation
 
 ```python
-from dataclasses import dataclass
+from corbel import dataclass
 from corbel import Updatable, field
 
 @dataclass
@@ -134,7 +134,7 @@ Automatically validates fields on initialization and update:
 - Raises `ValidationError` on failure
 
 ```python
-from dataclasses import dataclass
+from corbel import dataclass
 from corbel import Validated, field, ValidationError
 
 def positive(value: int) -> bool:
@@ -163,7 +163,7 @@ Caches a hash based on dataclass fields:
 - Suitable for dict keys and set members
 
 ```python
-from dataclasses import dataclass
+from corbel import dataclass
 from corbel import Hashable, field
 
 @dataclass
@@ -189,7 +189,7 @@ Provides `<`, `<=`, `>`, `>=`, `==` based on field values:
 - Supports total ordering
 
 ```python
-from dataclasses import dataclass
+from corbel import dataclass
 from corbel import Comparable, field
 
 @dataclass
@@ -214,7 +214,7 @@ Custom property decorator supporting:
 - `allow_none` / `ignore`
 
 ```python
-from dataclasses import dataclass
+from corbel import dataclass
 from corbel import Corbel, corbel_property, field
 
 def positive(x: int) -> bool:
@@ -287,7 +287,7 @@ print(deserialize_int("42", int))  # 42
 Mixins can be combined for full-featured dataclasses:
 
 ```python
-from dataclasses import dataclass
+from corbel import dataclass
 from corbel import Serializable, Updatable, Validated, Hashable, Comparable, field, corbel_property
 
 @dataclass

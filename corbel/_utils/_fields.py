@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import fields as _fields
+from functools import cached_property
 from typing import cast, TYPE_CHECKING
 
 from ..protocols import CorbelDataclass
@@ -28,11 +29,15 @@ def fields(
         of the class.
     :rtype: tuple[Field, ...]
     """
-    return (
-        getattr(cast(CorbelDataclass, cls), "corbel_fields")
-        if hasattr(cls, "corbel_fields")
-        else _fields(cls)
-    )
+    corbel_fields = getattr(cast(CorbelDataclass, cls), "corbel_fields", None)
+
+    if isinstance(corbel_fields, cached_property):
+        corbel_fields = None
+
+    if isinstance(corbel_fields, tuple):
+        return corbel_fields
+
+    return _fields(cls)
 
 
 __all__ = ("fields",)

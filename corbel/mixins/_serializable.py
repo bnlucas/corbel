@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, ClassVar
 
 from ._corbel import Corbel
 from .._utils import to_dict, to_json, from_dict, from_json
@@ -8,7 +8,7 @@ from ..enums import Include
 
 if TYPE_CHECKING:
     from json import JSONEncoder, JSONDecoder
-    from typing import Any, Callable, ClassVar, Type
+    from typing import Any, Callable, Type
 
     from ..types import DictFactory, ListFactory, MutableDict, TCorbelDataclass
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from types import UnionType
-from typing import get_args, get_origin, Union, TYPE_CHECKING
+from typing import Any, get_args, get_origin, Union, TYPE_CHECKING
 
 from ._deserialize_obj import deserialize_obj
 
@@ -30,6 +30,12 @@ def deserialize_value(
     :raises TypeError:
         If the value does not match any type in a Union.
     """
+    if type_hint is Any:
+        return value
+
+    if type_hint is None:
+        return value
+
     origin = get_origin(type_hint)
     types = get_args(type_hint)
 

@@ -22,6 +22,9 @@ class CorbelDataclass(Protocol):
             Provides standard dataclass introspection.
     """
 
+    __mro__: tuple[type, Any]
+    __bases__: tuple[type, ...]
+
     __dataclass_fields__: ClassVar[dict[str, Field[Any]]]
 
 

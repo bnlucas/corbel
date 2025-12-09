@@ -1,15 +1,16 @@
 from __future__ import annotations
 
 from dataclasses import Field
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Callable, MutableMapping
 
 from ._hooks import HooksMixin
 from ._members import MembersMixin
 from .._utils import asdict as _asdict
 
-if TYPE_CHECKING:
-    from typing import Any
+DictFactory = Callable[[], MutableMapping[str, Any]]
+MutableDict = MutableMapping[str, Any]
 
+if TYPE_CHECKING:
     from ..types import DictFactory, MutableDict
 
 

@@ -46,7 +46,9 @@ class Updatable(Corbel):
         :return:
             A new instance of the same class with updated fields.
         """
-        data = self.asdict(include_private=True)
+        data = dict(self.asdict(include_private=True))
+        for name in self.corbel_property_names:
+            data.pop(name, None)
         data.update(kwargs)
 
         if use_deepcopy is True:
@@ -76,7 +78,7 @@ class Updatable(Corbel):
         self._corbel_validation = original
 
         if self._corbel_validation and hasattr(self, "_validate_field"):
-            for field in self._corbel_dirty_fields.values():
+            for field in tuple(self._corbel_dirty_fields.values()):
                 value = getattr(self, field.name)
                 self._validate_field(field, value)
 

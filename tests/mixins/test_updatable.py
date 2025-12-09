@@ -2,6 +2,7 @@ from dataclasses import dataclass, Field
 from typing import Any
 
 from corbel import field
+from corbel import Validated
 from corbel.mixins._updatable import Updatable
 
 
@@ -10,6 +11,21 @@ class Dummy(Updatable):
     x: int
     y: str
     _private: int = 0
+
+
+@dataclass
+class WithProperty(Updatable):
+    x: int
+    y: int
+
+    @property
+    def total(self) -> int:
+        return self.x + self.y
+
+
+@dataclass
+class ValidatedDummy(Validated, Updatable):
+    x: int = field(validator=lambda v: v > 0)
 
 
 def test_copy_creates_identical_instance():
@@ -68,3 +84,22 @@ def test_batch_update_toggles_validation():
 
     assert u._corbel_validation
     assert u._calls == [("x", 10), ("y", "b")]
+
+
+def test_update_skips_properties():
+    w = WithProperty(x=1, y=2)
+
+    updated = w.update(x=3)
+
+    assert updated.x == 3
+    assert updated.y == 2
+    assert updated.total == 5
+
+
+def test_batch_update_with_validated_is_safe():
+    v = ValidatedDummy(1)
+
+    with v.batch_update() as vb:
+        vb.x = 2
+
+    assert v.x == 2

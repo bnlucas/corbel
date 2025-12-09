@@ -1,7 +1,7 @@
 import dataclasses
 from datetime import date, datetime, time
 from enum import Enum
-from typing import Dict
+from typing import Any, Dict
 from uuid import UUID
 
 import pytest
@@ -62,6 +62,11 @@ def test_datetime_types():
 def test_uuid():
     u = UUID("12345678-1234-5678-1234-567812345678")
     assert str(deserialize_value(str(u), UUID)) == str(u)
+
+
+def test_any_type_passthrough():
+    val = {"k": "v"}
+    assert deserialize_value(val, Any) is val
 
 
 def test_dataclass():

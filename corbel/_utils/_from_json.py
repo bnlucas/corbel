@@ -50,7 +50,7 @@ def from_json(
         Optional callable for decoding integer values.
     :param parse_constant:
         Optional callable for decoding constants (NaN, Infinity, etc.).
-    :param object_hook_pairs:
+    :param object_pairs_hook:
         Optional callable for decoding key-value pairs as a list of tuples.
     :return:
         An instance of `cls` populated with the deserialized data.

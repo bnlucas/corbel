@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from ._utils import asdict, field, fields
+from .decorators import corbel_property, dataclass
 from .enums import Include
 from .errors import DeserializeError, InclusionError, ValidationError, CorbelError
 from .mixins import (
@@ -12,8 +13,9 @@ from .mixins import (
     Corbel,
 )
 
-
 __all__ = (
+    "corbel_property",
+    "dataclass",
     "DeserializeError",
     "InclusionError",
     "ValidationError",
